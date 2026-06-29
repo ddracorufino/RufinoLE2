@@ -1,0 +1,10 @@
+<div *ngIf="(post$ | async) as post; else loading">
+  <h3>{{ post.title }}</h3>
+  <p>by {{ post.userName }}; on {{ post.dateCreated | date }}</p>
+  <p>{{ post.body }}</p>
+  <a href="/">Back to list</a>
+</div>
+
+<ng-template #loading>
+  <p>Loading post...</p>
+</ng-template>
