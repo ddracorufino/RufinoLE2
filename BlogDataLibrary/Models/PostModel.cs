@@ -1,4 +1,4 @@
-﻿namespace BlogDataLibrary
+﻿namespace BlogDataLibrary.Models
 {
     public class PostModel
     {

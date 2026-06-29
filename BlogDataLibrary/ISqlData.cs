@@ -1,4 +1,6 @@
-﻿namespace BlogDataLibrary
+﻿using BlogDataLibrary.Models;
+
+namespace BlogDataLibrary
 {
     public interface ISqlData
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BlogDataLibrary
+namespace BlogDataLibrary.Models
 {
     public class ListPostModel
     {

@@ -1,14 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using BlogDataLibrary.Database;
+using BlogDataLibrary.Models;
+using System.Collections.Generic;
 using System.Linq;
 
-namespace BlogDataLibrary
+namespace BlogDataLibrary.Data
 {
     public class SqlData : ISqlData
     {
-        private readonly SqlDataAccess _db;
+        private readonly ISqlDataAccess _db;
         private const string connectionStringName = "SqlDb";
 
-        public SqlData(SqlDataAccess dbAccess)
+        public SqlData(ISqlDataAccess dbAccess)
         {
             _db = dbAccess;
         }
@@ -38,5 +40,4 @@ namespace BlogDataLibrary
             return _db.LoadData<ListPostModel, dynamic>("dbo.spPosts_Details", new { id }, connectionStringName, true).FirstOrDefault();
         }
     }
-
 }

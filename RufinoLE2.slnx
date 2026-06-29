@@ -1,7 +1,8 @@
 <Solution>
+  <Project Path="BlogAPI/BlogAPI.csproj" />
   <Project Path="BlogDataLibrary/BlogDataLibrary.csproj" />
   <Project Path="BlogTestUI/BlogTestUI.csproj" />
-  <Project Path="RufinoBlogDB/RufinoBlogDB.sqlproj">
+  <Project Path="RufinoBlogDB/RufinoBlogDB.sqlproj" Id="64042f22-0801-4db7-ac0e-581e20da3dcb">
     <Build />
     <Deploy />
   </Project>
