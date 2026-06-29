@@ -35,6 +35,14 @@ namespace BlogAPI
             builder.Services.AddTransient<ISqlDataAccess, SqlDataAccess>();
             builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAngularDev",
+                    policy => policy.WithOrigins("http://localhost:4200")
+                                     .AllowAnyMethod()
+                                     .AllowAnyHeader());
+            });
+
             var app = builder.Build();
 
             if (app.Environment.IsDevelopment())
@@ -44,6 +52,8 @@ namespace BlogAPI
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors("AllowAngularDev");
 
             app.UseAuthentication();
             app.UseAuthorization();
