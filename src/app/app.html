@@ -1,9 +1,22 @@
+<nav class="navbar">
 
-<nav style="padding: 1rem; border-bottom: 1px solid #ccc;">
-  <a href="/">Home</a> | 
-  <a href="/login">Login</a> | 
-  <a href="/register">Register</a>
+  <a href="/" class="logo">
+    UNBLOG <span>ME</span>
+  </a>
+
+  <div class="nav-links">
+    <a href="/">Archive</a>
+    <a href="/login">Login</a>
+    <a href="/register">Register</a>
+  </div>
+
 </nav>
 
-<router-outlet></router-outlet>
-<router-outlet />
+<div class="reading-progress"></div>
+<div class="glow"></div>
+
+<main class="main-content">
+  
+  <router-outlet></router-outlet>
+</main>
+<button class="btn-purple"></button>

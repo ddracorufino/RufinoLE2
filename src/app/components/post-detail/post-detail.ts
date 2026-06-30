@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { Observable, switchMap } from 'rxjs'; // Import these
+import { Observable, switchMap } from 'rxjs';
 import { Post } from '../../models/post.model';
 
 @Component({
@@ -14,7 +14,6 @@ import { Post } from '../../models/post.model';
 })
 export class PostDetailComponent implements OnInit {
 
-  // We use an Observable instead of a variable
   post$?: Observable<Post>;
 
   constructor(
@@ -23,7 +22,6 @@ export class PostDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // switchMap grabs the ID from the URL and automatically fetches the data
     this.post$ = this.route.params.pipe(
       switchMap(params => this.http.get<Post>("https://localhost:7105/api/Post/" + params['id']))
     );

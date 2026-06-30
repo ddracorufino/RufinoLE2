@@ -1,5 +1,53 @@
-<div *ngFor="let post of (posts$ | async)">
-  <h3><a href="/posts/{{ post.id }}"> {{ post.title }} </a></h3>
-  
-  <p>by {{ post.userName }}; on {{ post.dateCreated | date }}</p>
-</div>
+<section class="archive-hero">
+  <div class="rain-streaks" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <p class="eyebrow">The Blog — Archive</p>
+  <h1 class="archive-title">Stories beneath <span class="gradient-text">purple skies</span></h1>
+  <p class="archive-sub">Every entry, newest first.</p>
+</section>
+
+<section class="archive-body" *ngIf="(posts$ | async) as posts; else loading">
+  <ng-container *ngIf="posts.length; else empty">
+
+    <a class="featured-card fade-up" href="/posts/{{ posts[0].id }}">
+      <span class="featured-label">Latest</span>
+      <h2 class="featured-title">{{ posts[0].title }}</h2>
+      <p class="featured-meta">{{ posts[0].userName }} — {{ posts[0].dateCreated | date }}</p>
+      <span class="featured-arrow">Read entry →</span>
+    </a>
+
+    <ng-container *ngIf="posts.length > 1">
+      <div class="list-header">
+        <span>Earlier entries</span>
+        <span>{{ posts.length - 1 }} more</span>
+      </div>
+
+      <div class="entry-list">
+        <a class="entry-card fade-up" *ngFor="let post of posts.slice(1); let i = index" href="/posts/{{ post.id }}" [style.animation-delay]="(i * 0.08) + 's'">
+          <span class="entry-index">{{ (i + 2) < 10 ? '0' + (i + 2) : (i + 2) }}</span>
+          <div class="entry-body">
+            <h3 class="entry-title">{{ post.title }}</h3>
+            <p class="entry-meta">{{ post.userName }} — {{ post.dateCreated | date }}</p>
+          </div>
+          <span class="entry-arrow">→</span>
+        </a>
+      </div>
+    </ng-container>
+
+  </ng-container>
+</section>
+
+<ng-template #empty>
+  <div class="state-message">
+    <p>No entries yet.</p>
+    <span>New stories will appear here once published.</span>
+  </div>
+</ng-template>
+
+<ng-template #loading>
+  <div class="state-message">
+    <span class="pulse-dot"></span>
+    <p>Loading entries...</p>
+  </div>
+</ng-template>

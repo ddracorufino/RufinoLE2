@@ -1,10 +1,32 @@
-<div *ngIf="(post$ | async) as post; else loading">
-  <h3>{{ post.title }}</h3>
-  <p>by {{ post.userName }}; on {{ post.dateCreated | date }}</p>
-  <p>{{ post.body }}</p>
-  <a href="/">Back to list</a>
-</div>
+<article *ngIf="(post$ | async) as post; else loading" class="article-page">
+  <a class="article-back" href="/">← Back to archive</a>
+
+  <p class="article-eyebrow">Article</p>
+
+  <div class="article-meta">
+    <span class="avatar-circle">{{ post.userName.charAt(0) }}</span>
+    <div>
+      <p class="article-author">{{ post.userName }}</p>
+      <p class="article-date">{{ post.dateCreated | date }}</p>
+    </div>
+  </div>
+
+  <div class="article-title-wrap">
+    <span class="article-watermark" aria-hidden="true">“</span>
+    <h1 class="article-title">{{ post.title }}</h1>
+  </div>
+
+  <div class="article-rule"></div>
+
+  <p class="article-body">{{ post.body }}</p>
+
+  <a class="article-back article-back--bottom" href="/">← Back to archive</a>
+</article>
 
 <ng-template #loading>
-  <p>Loading post...</p>
+  <div class="state-message">
+    <span class="pulse-dot"></span>
+    <div class="glow"></div>
+    <p>Loading entry...</p>
+  </div>
 </ng-template>

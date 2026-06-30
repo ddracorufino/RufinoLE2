@@ -1,39 +1,80 @@
-<form
-    name="form"
-    (ngSubmit)="onSubmit()"
-    #f="ngForm">
+<div class="login-container">
+  <div class="ambient-streaks" aria-hidden="true">
+    <span></span><span></span><span></span><span></span>
+  </div>
 
-    <label for="username">Username</label>
-    <input
-        type="text"
-        name="username"
-        [(ngModel)]="form.username"
-        required
-        #username="ngModel" />
+  <div class="login-card fade-up">
 
-    <label for="password">Password</label>
-    <input
-        type="password"
-        name="password"
-        [(ngModel)]="form.password"
-        required
-        #password="ngModel" />
+    <p class="card-eyebrow">The Blog</p>
+    <h1>Create <span class="gradient-text">Account</span></h1>
 
-    <label for="firstName">First Name</label>
-    <input
+    <p class="card-sub">
+      Join the community and start publishing your own stories.
+    </p>
+
+    <form (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
+
+      <label for="firstName">First Name</label>
+      <input
+        id="firstName"
         type="text"
         name="firstName"
         [(ngModel)]="form.firstName"
         required
-        #firstName="ngModel" />
+        #firstName="ngModel">
 
-    <label for="lastName">Last Name</label>
-    <input
+      <label for="lastName">Last Name</label>
+      <input
+        id="lastName"
         type="text"
         name="lastName"
         [(ngModel)]="form.lastName"
         required
-        #lastName="ngModel" />
+        #lastName="ngModel">
 
-    <button>Submit</button>
-</form>
+      <label for="username">Username</label>
+      <input
+        id="username"
+        type="text"
+        name="username"
+        [(ngModel)]="form.username"
+        required
+        #username="ngModel"
+        autocomplete="username">
+
+      <label for="password">Password</label>
+      <input
+        id="password"
+        type="password"
+        name="password"
+        [(ngModel)]="form.password"
+        required
+        #password="ngModel"
+        autocomplete="new-password">
+
+      <label for="confirmPassword">Confirm Password</label>
+      <input
+        id="confirmPassword"
+        type="password"
+        name="confirmPassword"
+        [(ngModel)]="confirmPassword"
+        required
+        #confirmPasswordField="ngModel"
+        autocomplete="new-password">
+
+      <p class="form-error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+      <button type="submit" [disabled]="f.invalid">
+        Register
+      </button>
+
+    </form>
+
+    <div class="form-footer">
+      Already have an account?
+      <a routerLink="/login">Login</a>
+    </div>
+    <div class="glow"></div>
+
+  </div>
+</div>
